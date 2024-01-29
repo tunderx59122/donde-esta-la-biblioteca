@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Repository
 {
-    public class AuthorRepository : IAuthorRepository
+    public class AuthorRepository : IGenericRepository<Author>
     {
         public IEnumerable<Author> GetAll()
         {

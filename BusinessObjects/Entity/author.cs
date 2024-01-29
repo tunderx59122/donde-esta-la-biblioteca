@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace BusinessObjects.Entity
 {
     /// <summary>
@@ -5,13 +7,14 @@ namespace BusinessObjects.Entity
     /// </summary>
     public class Author
     {
+        [Key]
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
 
         public Author(int id, string firstName, string lastName)
         {
-            Id = 0;
+            Id = id;
             FirstName = firstName;
             LastName = lastName;
         }

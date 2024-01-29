@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public interface IAuthorRepository
+    public interface IGenericRepository<T>
     {
-        public IEnumerable<Author> GetAll();
-        public Author Get(int id);
+        public IEnumerable<T> GetAll();
+        public T Get(int id);
     }
 }

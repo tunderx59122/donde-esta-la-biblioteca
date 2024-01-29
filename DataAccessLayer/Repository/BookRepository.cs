@@ -5,7 +5,7 @@ using DataAccessLayer.Repository;
 /// <summary>
 /// Summary description for BookRepository
 /// </summary>
-public class BookRepository : IBookRepository
+public class BookRepository : IGenericRepository<Book>
 {
     public IEnumerable<Book> GetAll()
     {

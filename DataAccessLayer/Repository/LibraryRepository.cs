@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Repository
 {
-    public class LibraryRepository : ILibraryRepository
+    public class LibraryRepository : IGenericRepository<Library>
     {
         public IEnumerable<Library> GetAll()
         {

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace BusinessObjects.Entity
 {
     /// <summary>
@@ -5,6 +7,7 @@ namespace BusinessObjects.Entity
     /// </summary>
     public class Library
     {
+        [Key]
         public int Id { get; set; }
         public string Name { get; set; }
         public string Adress { get; set; }
