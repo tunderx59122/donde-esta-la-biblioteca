@@ -12,15 +12,9 @@ namespace BusinessLayer.Catalog
             return _bookRepository.GetAll();
         }
 
-        public List<Book> DisplayCatalog(string type)
+        public List<Book> DisplayCatalog(BookType type)
         {
-            List<Book> books = [];
-
-            foreach (Book book in this.DisplayCatalog())
-            {
-                books.Add(book);
-            }
-
+            List<Book> books = this.DisplayCatalog().Where(book => type == book.Type).ToList();
             return books;
         }
 
