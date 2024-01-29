@@ -2,18 +2,18 @@
 
 namespace BusinessLayer.Catalog
 {
-    internal class CatalogManager
+    public class CatalogManager
     {
-        public IEnumerable<Book> GetAll()
+        public static IEnumerable<Book> GetAll()
         {
             return BookRepository.GetAll();
         }
 
-        public IEnumerable<Book> GetAll(string type)
+        public static IEnumerable<Book> GetAll(string type)
         {
             IEnumerable<Book> books = [];
 
-            foreach (Book book in this.GetAll())
+            foreach (Book book in CatalogManager.GetAll())
             {
                 books.Add(book);
             }
@@ -21,7 +21,7 @@ namespace BusinessLayer.Catalog
             return books;
         }
 
-        public Book FindBook(int id)
+        public static Book FindBook(int id)
         {
             return BookRepository.Get(id);
         }
