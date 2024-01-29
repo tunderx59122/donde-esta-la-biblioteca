@@ -7,16 +7,16 @@ namespace BusinessLayer.Catalog
     {
         BookRepository _bookRepository = new BookRepository();
 
-        public IEnumerable<Book> GetAll()
+        public IEnumerable<Book> DisplayCatalog()
         {
             return _bookRepository.GetAll();
         }
 
-        public List<Book> GetAll(string type)
+        public List<Book> DisplayCatalog(string type)
         {
             List<Book> books = [];
 
-            foreach (Book book in this.GetAll())
+            foreach (Book book in this.DisplayCatalog())
             {
                 books.Add(book);
             }
@@ -24,14 +24,14 @@ namespace BusinessLayer.Catalog
             return books;
         }
 
-        public List<Book> GetFantasy()
+        public List<Book> DisplayFantasy()
         {
-            List<Book> fantasyBooks = this.GetAll().Where(book => BookType.Fantasy == book.Type).ToList();
+            List<Book> fantasyBooks = this.DisplayCatalog().Where(book => BookType.Fantasy == book.Type).ToList();
             return fantasyBooks;
         }
-        public Book GetBestBook()
+        public Book DisplayBest()
         {
-            Book bestBook = this.GetAll().OrderByDescending(book => book.Rate).FirstOrDefault();
+            Book bestBook = this.DisplayCatalog().OrderByDescending(book => book.Rate).FirstOrDefault();
             return bestBook;
         }
         public Book FindBook(int id)

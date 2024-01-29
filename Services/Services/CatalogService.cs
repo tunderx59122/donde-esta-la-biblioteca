@@ -10,12 +10,12 @@ namespace Services.Services
 
         public IEnumerable<Book> ShowCatalog()
         {
-            return _catalogManager.GetAll();
+            return _catalogManager.DisplayCatalog();
         }
 
         public IEnumerable<Book> ShowCatalog(string type)
         {
-            return _catalogManager.GetAll(type);
+            return _catalogManager.DisplayCatalog(type);
         }
 
         public Book FindBook(int id)
@@ -25,12 +25,12 @@ namespace Services.Services
 
         public List<Book> GetFantasy()
         {
-            return _catalogManager.GetFantasy();
+            return _catalogManager.DisplayFantasy();
         }
 
         public Book GetBestBook()
         {
-            return _catalogManager.GetBestBook();
+            return _catalogManager.DisplayBest();
         }
     }
 }
