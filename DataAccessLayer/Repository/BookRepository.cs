@@ -1,12 +1,11 @@
 ﻿using BusinessObjects.Entity;
 using BusinessObjects.Enums;
-using System;
-using System.Security.Cryptography.X509Certificates;
+using DataAccessLayer.Repository;
 
 /// <summary>
 /// Summary description for BookRepository
 /// </summary>
-public class BookRepository
+public class BookRepository : IBookRepository
 {
     public IEnumerable<Book> GetAll()
     {

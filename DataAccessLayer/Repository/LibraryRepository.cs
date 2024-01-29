@@ -2,7 +2,7 @@
 
 namespace DataAccessLayer.Repository
 {
-    internal class LibraryRepository
+    public class LibraryRepository : ILibraryRepository
     {
         public IEnumerable<Library> GetAll()
         {

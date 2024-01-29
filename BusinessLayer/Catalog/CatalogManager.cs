@@ -3,7 +3,7 @@ using BusinessObjects.Enums;
 
 namespace BusinessLayer.Catalog
 {
-    public class CatalogManager
+    public class CatalogManager : ICatalogManager
     {
         BookRepository _bookRepository = new BookRepository();
 

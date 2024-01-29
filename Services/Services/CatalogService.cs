@@ -4,7 +4,7 @@ using BusinessObjects.Enums;
 
 namespace Services.Services
 {
-    internal class CatalogService
+    public class CatalogService : ICatalogService
     {
         CatalogManager _catalogManager = new CatalogManager();
 
