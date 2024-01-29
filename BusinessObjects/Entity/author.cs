@@ -5,7 +5,7 @@ namespace BusinessObjects.Entity
     /// <summary>
     /// 
     /// </summary>
-    public class Author
+    public class Author : IEntity
     {
         [Key]
         public int Id { get; set; }
