@@ -1,7 +1,5 @@
-
 using BusinessObjects.Entity;
 using DataAccessLayer.Repository;
-
 
 namespace BusinessLayer.Catalog
 {
@@ -67,27 +65,11 @@ namespace BusinessLayer.Catalog
         public Book GetBookBestRated()
         {
             List<Book> books = _bookRepository.GetAll().ToList();
-
             Book book = books.OrderByDescending(book => book.Rate).First();
-
             Console.WriteLine($"Le livre avec le mieux noté est {book.Name} avec {book.Rate}");
 
             return book;
         }
 
-        void ICatalogManager.DisplayCatalog()
-        {
-            throw new NotImplementedException();
-        }
-
-        Book ICatalogManager.FindBook(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Book> ICatalogManager.GetBooksFantasy()
-        {
-            throw new NotImplementedException();
-        }
     }
 }
