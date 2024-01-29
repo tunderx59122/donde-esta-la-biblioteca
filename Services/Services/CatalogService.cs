@@ -6,29 +6,31 @@ namespace Services.Services
 {
     internal class CatalogService
     {
+        CatalogManager _catalogManager = new CatalogManager();
+
         public IEnumerable<Book> ShowCatalog()
         {
-            return CatalogManager.GetAll();
+            return _catalogManager.GetAll();
         }
 
         public IEnumerable<Book> ShowCatalog(string type)
         {
-            return CatalogManager.GetAll(type);
+            return _catalogManager.GetAll(type);
         }
 
         public Book FindBook(int id)
         {
-            return CatalogManager.FindBook(id);
+            return _catalogManager.FindBook(id);
         }
 
         public List<Book> GetFantasy()
         {
-            return CatalogManager.GetFantasy();
+            return _catalogManager.GetFantasy();
         }
 
         public Book GetBestBook()
         {
-            return CatalogManager.GetBestBook();
+            return _catalogManager.GetBestBook();
         }
     }
 }

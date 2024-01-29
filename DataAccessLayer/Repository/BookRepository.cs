@@ -8,13 +8,13 @@ using System.Security.Cryptography.X509Certificates;
 /// </summary>
 public class BookRepository
 {
-    public static IEnumerable<Book> GetAll()
+    public IEnumerable<Book> GetAll()
     {
         IEnumerable<Book> books = [];
         return books;
     }
 
-    public static Book Get(int id)
+    public Book Get(int id)
     {
         return new Book(1, "The Lord of the Rings", 1000, BookType.Fantasy, 5, 1);
     }   

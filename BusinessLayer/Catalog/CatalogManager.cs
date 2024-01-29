@@ -5,16 +5,18 @@ namespace BusinessLayer.Catalog
 {
     public class CatalogManager
     {
-        public static IEnumerable<Book> GetAll()
+        BookRepository _bookRepository = new BookRepository();
+
+        public IEnumerable<Book> GetAll()
         {
-            return BookRepository.GetAll();
+            return _bookRepository.GetAll();
         }
 
-        public static List<Book> GetAll(string type)
+        public List<Book> GetAll(string type)
         {
             List<Book> books = [];
 
-            foreach (Book book in CatalogManager.GetAll())
+            foreach (Book book in this.GetAll())
             {
                 books.Add(book);
             }
@@ -22,19 +24,19 @@ namespace BusinessLayer.Catalog
             return books;
         }
 
-        public static List<Book> GetFantasy()
+        public List<Book> GetFantasy()
         {
-            List<Book> fantasyBooks = CatalogManager.GetAll().Where(book => BookType.Fantasy == book.Type).ToList();
+            List<Book> fantasyBooks = this.GetAll().Where(book => BookType.Fantasy == book.Type).ToList();
             return fantasyBooks;
         }
-        public static Book GetBestBook()
+        public Book GetBestBook()
         {
-            Book bestBook = CatalogManager.GetAll().OrderByDescending(book => book.Rate).FirstOrDefault();
+            Book bestBook = this.GetAll().OrderByDescending(book => book.Rate).FirstOrDefault();
             return bestBook;
         }
-        public static Book FindBook(int id)
+        public Book FindBook(int id)
         {
-            return BookRepository.Get(id);
+            return _bookRepository.Get(id);
         }
     }
 }
