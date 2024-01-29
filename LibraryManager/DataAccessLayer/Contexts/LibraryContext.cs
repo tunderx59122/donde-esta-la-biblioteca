@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.Contexts
 {
-    internal class DbContext : ILibraryContext
+    public class LibraryContext : DbContext
     {
     }
 }
