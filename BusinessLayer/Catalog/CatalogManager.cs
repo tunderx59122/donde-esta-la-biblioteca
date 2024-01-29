@@ -27,7 +27,11 @@ namespace BusinessLayer.Catalog
             List<Book> fantasyBooks = CatalogManager.GetAll().Where(book => BookType.Fantasy == book.Type).ToList();
             return fantasyBooks;
         }
-
+        public static Book GetBestBook()
+        {
+            Book bestBook = CatalogManager.GetAll().OrderByDescending(book => book.Rate).FirstOrDefault();
+            return bestBook;
+        }
         public static Book FindBook(int id)
         {
             return BookRepository.Get(id);
