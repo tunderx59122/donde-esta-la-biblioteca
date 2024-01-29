@@ -1,3 +1,9 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 namespace BusinessObjects.Entity
 {
     public enum BookTypes
@@ -9,8 +15,9 @@ namespace BusinessObjects.Entity
         FANTASY
     }
 
-    public class Book : Entity
+    public class Book
     {
+        public int id { get; set; }
         public string Name { get; set; }
 
         public int Pages { get; set; }

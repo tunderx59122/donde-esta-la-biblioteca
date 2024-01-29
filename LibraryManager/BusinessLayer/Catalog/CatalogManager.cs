@@ -1,5 +1,5 @@
+
 using BusinessObjects.Entity;
-using DataAccessLayer.Data;
 using DataAccessLayer.Repository;
 
 
@@ -9,24 +9,25 @@ namespace BusinessLayer.Catalog
     {
         private BookRepository _bookRepository;
 
-        public CatalogManager(DataContext context)
+        public CatalogManager()
         {
-            _bookRepository = new BookRepository(context);
+            _bookRepository = new BookRepository();
         }
 
-        public async Task DisplayCatalog()
+        public IEnumerable<Book> DisplayCatalog()
         {
-            List<Book> books = await _bookRepository.GetAll();
+            var books = _bookRepository.GetAll();
             Console.WriteLine("La liste des livres :");
             foreach (Book book in books)
             {
                 Console.WriteLine(book.Name);
             }
+            throw new Exception();
         }
 
-        public async Task DisplayCatalog(Type type)
+        public IEnumerable<Book> DisplayCatalog(BookTypes type)
         {
-            List<Book> books = await _bookRepository.GetAll();
+            var books = _bookRepository.GetAll();
             Console.WriteLine($"La liste des livres du type {type} :");
             foreach (Book book in books)
             {
@@ -36,16 +37,17 @@ namespace BusinessLayer.Catalog
 
                 }
             }
+            throw new Exception();
         }
 
-        public async Task<Book> FindBook(int id)
+        public Book FindBook(int id)
         {
-            Book book = await _bookRepository.Get(id);
+            Book book = _bookRepository.Get(id);
             Console.WriteLine($"Book avec l'ID {book.Id} {book.Name}");
             return book;
         }
 
-        public List<Book> GetBooksFantasy()
+        public IEnumerable<Book> GetBooksFantasy()
         {
             List<Book> books = _bookRepository.GetAll().ToList();
 
@@ -73,6 +75,19 @@ namespace BusinessLayer.Catalog
             return book;
         }
 
+        void ICatalogManager.DisplayCatalog()
+        {
+            throw new NotImplementedException();
+        }
 
+        Book ICatalogManager.FindBook(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Book> ICatalogManager.GetBooksFantasy()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -14,8 +14,8 @@ namespace BusinessLayer.Catalog
 
         public Book FindBook(int id);
 
-        public List<Book> GetFantasyBooks();
+        public List<Book> GetBooksFantasy();
 
-        public Book GetBetterGradeBook();
+        public Book GetBookBestRated();
     }
 }

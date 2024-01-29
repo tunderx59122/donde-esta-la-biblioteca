@@ -31,4 +31,5 @@ namespace Services.Services
         {
             return _catalogManager.GetBookBestRated();
         }
+    }
 }
