@@ -1,3 +1,5 @@
+using BusinessObjects.Enums;
+
 namespace BusinessObjects.Entity
 {
     /// <summary>
@@ -8,7 +10,7 @@ namespace BusinessObjects.Entity
         public int Id { get; set; }
         public string Name { get; set; }
         public int Pages { get; set; }
-        public string Type  { get; set; }
+        public BookType Type  { get; set; }
         public int Rate { get; set; }
         public int Id_author { get; set; }
 
@@ -21,7 +23,7 @@ namespace BusinessObjects.Entity
         /// <param name="type"></param>
         /// <param name="rate"></param>
         /// <param name="id_author"></param>
-        public Book(int id, string name, int pages, string type, int rate, int id_author)
+        public Book(int id, string name, int pages, BookType type, int rate, int id_author)
         {
             this.Id = id;
             this.Name = name;

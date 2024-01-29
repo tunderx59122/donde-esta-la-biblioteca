@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Entity;
+using BusinessObjects.Enums;
 
 namespace BusinessLayer.Catalog
 {
@@ -9,9 +10,9 @@ namespace BusinessLayer.Catalog
             return BookRepository.GetAll();
         }
 
-        public static IEnumerable<Book> GetAll(string type)
+        public static List<Book> GetAll(string type)
         {
-            IEnumerable<Book> books = [];
+            List<Book> books = [];
 
             foreach (Book book in CatalogManager.GetAll())
             {
@@ -19,6 +20,12 @@ namespace BusinessLayer.Catalog
             }
 
             return books;
+        }
+
+        public static List<Book> GetFantasy()
+        {
+            List<Book> fantasyBooks = CatalogManager.GetAll().Where(book => BookType.Fantasy == book.Type).ToList();
+            return fantasyBooks;
         }
 
         public static Book FindBook(int id)
