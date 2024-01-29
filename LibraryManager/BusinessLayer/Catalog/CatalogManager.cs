@@ -40,7 +40,7 @@ namespace BusinessLayer.Catalog
 
         public Book FindBook(int id)
         {
-            Book book = _bookRepository.Get(id);
+            Book book = (Book)_bookRepository.Get(id);
             Console.WriteLine($"Book avec l'ID {book.Id} {book.Name}");
             return book;
         }
