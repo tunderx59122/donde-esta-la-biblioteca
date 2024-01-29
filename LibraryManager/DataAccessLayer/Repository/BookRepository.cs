@@ -13,10 +13,10 @@ namespace DataAccessLayer.Repository
 
         public BookRepository()
         {
-            AddBook(new Book { Name = "Book1", Pages = 50, Type = BookTypes.ENSEIGNEMENT, Rate = 2, Id_author = 1, Id = 1 });
-            AddBook(new Book { Name = "Book2", Pages = 60, Type = BookTypes.HISTOIRE, Rate = 3, Id_author = 2, Id = 2 });
-            AddBook(new Book { Name = "Book3", Pages = 200, Type = BookTypes.FANTASY, Rate = 4, Id_author = 1, Id = 3 });
-            AddBook(new Book { Name = "Book4", Pages = 150, Type = BookTypes.FANTASY, Rate = 5, Id_author = 3, Id = 4 });
+            AddBook(new Book { Name = "Book1", Pages = 50, Type = BookTypes.ENSEIGNEMENT, Rate = 2, IdAuthor = 1, Id = 1 });
+            AddBook(new Book { Name = "Book2", Pages = 60, Type = BookTypes.HISTOIRE, Rate = 3, IdAuthor = 2, Id = 2 });
+            AddBook(new Book { Name = "Book3", Pages = 200, Type = BookTypes.FANTASY, Rate = 4, IdAuthor = 1, Id = 3 });
+            AddBook(new Book { Name = "Book4", Pages = 150, Type = BookTypes.FANTASY, Rate = 5, IdAuthor = 3, Id = 4 });
         }
 
         public IEnumerable<Book> GetAll()
