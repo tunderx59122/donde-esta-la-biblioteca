@@ -1,6 +1,7 @@
 using BusinessObjects.Entity;
 using DataAccessLayer.Repository;
 
+
 namespace BusinessLayer.Catalog
 {
     public class CatalogManager : ICatalogManager

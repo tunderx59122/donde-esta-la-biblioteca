@@ -10,10 +10,5 @@ namespace DataAccessLayer.Contexts
 {
     public class LibraryContext : DbContext
     {
-
-        //public void ConfigureServices(ICatalogService services) { 
-        //        services.AddDbContext<LibraryContext>(options =>
-        //              options.UseSqlite("Data Source={path};"));
-        //}
     }
 }
