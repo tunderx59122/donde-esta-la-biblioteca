@@ -6,11 +6,11 @@ namespace BusinessLayer.Catalog
     public class CatalogManager : ICatalogManager
     {
         //igenericBookRepository
-        private BookRepository _bookRepository;
+        private readonly IRepository _bookRepository;
 
-        public CatalogManager()
+        public CatalogManager(IRepository bookRepository)
         {
-            _bookRepository = new BookRepository();
+            _bookRepository = bookRepository;
         }
 
         public IEnumerable<Book> DisplayCatalog()
