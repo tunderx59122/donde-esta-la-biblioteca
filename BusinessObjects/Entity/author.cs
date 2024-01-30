@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusinessObjects.Entity
 {
     /// <summary>
     /// 
     /// </summary>
-    public class Author : IEntity
+    [Table("author")]
+    public class Author : AEntity
     {
         [Key]
         public int Id { get; set; }

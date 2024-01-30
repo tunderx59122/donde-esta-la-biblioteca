@@ -7,7 +7,8 @@ namespace BusinessObjects.Entity
     /// <summary>
     /// 
     /// </summary>
-    public class Book : IEntity
+    [Table("book")]
+    public class Book : AEntity
     {
         [Key]
         public int Id { get; set; }

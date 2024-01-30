@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects.Entity
 {
-    internal interface IEntity
+    public class AEntity
     {
         int Id { get; set; }
     }

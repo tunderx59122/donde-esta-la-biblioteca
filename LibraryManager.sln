@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34408.163
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager", "LibraryManager\LibraryManager.csproj", "{CB4E7D04-5147-4C4D-932E-D1661A137A54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryManager", "LibraryManager\LibraryManager.csproj", "{CB4E7D04-5147-4C4D-932E-D1661A137A54}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{12014882-1E9E-4D3A-A6FC-8FF9B06E138A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{12014882-1E9E-4D3A-A6FC-8FF9B06E138A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{7205406C-17C9-4335-AA53-AA933F3BB1EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{7205406C-17C9-4335-AA53-AA933F3BB1EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{67D82CDE-F491-4585-B5AF-1025C9C248EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessObjects", "BusinessObjects\BusinessObjects.csproj", "{67D82CDE-F491-4585-B5AF-1025C9C248EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{7656B8B4-D57E-4126-B0FD-79B5AABE3D01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{7656B8B4-D57E-4126-B0FD-79B5AABE3D01}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryManager.Hosting", "LibraryManager.Hosting\LibraryManager.Hosting.csproj", "{FDEB9006-0889-404E-AE67-513FEACF3120}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7656B8B4-D57E-4126-B0FD-79B5AABE3D01}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7656B8B4-D57E-4126-B0FD-79B5AABE3D01}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7656B8B4-D57E-4126-B0FD-79B5AABE3D01}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDEB9006-0889-404E-AE67-513FEACF3120}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDEB9006-0889-404E-AE67-513FEACF3120}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDEB9006-0889-404E-AE67-513FEACF3120}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDEB9006-0889-404E-AE67-513FEACF3120}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
