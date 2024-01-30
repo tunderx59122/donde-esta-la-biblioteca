@@ -5,6 +5,7 @@ namespace BusinessLayer.Catalog
 {
     public class CatalogManager : ICatalogManager
     {
+        //igenericBookRepository
         private BookRepository _bookRepository;
 
         public CatalogManager()

@@ -5,7 +5,12 @@ namespace Services.Services
 {
     public class CatalogService : ICatalogService
     {
-        private CatalogManager _catalogManager = new CatalogManager();
+        private readonly ICatalogManager _catalogManager;
+
+        public CatalogService(ICatalogManager catalogManager)
+        {
+            _catalogManager = catalogManager;
+        }
 
         public void ShowCatalog()
         {
