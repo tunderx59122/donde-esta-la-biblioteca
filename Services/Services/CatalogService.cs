@@ -13,7 +13,7 @@ namespace Services.Services
             return _catalogManager.DisplayCatalog();
         }
 
-        public IEnumerable<Book> ShowCatalog(string type)
+        public IEnumerable<Book> ShowCatalog(BookType type)
         {
             return _catalogManager.DisplayCatalog(type);
         }

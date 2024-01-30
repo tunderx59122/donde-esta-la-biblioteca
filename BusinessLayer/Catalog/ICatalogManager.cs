@@ -14,7 +14,7 @@ namespace BusinessLayer.Catalog
         public IEnumerable<Book> DisplayCatalog();
         public List<Book> DisplayCatalog(BookType type);
         public List<Book> DisplayFantasy();
-        public Book DisplayBest():
-        public Book FindBook(int id):
+        public Book DisplayBest();
+        public Book FindBook(int id);
     }
 }

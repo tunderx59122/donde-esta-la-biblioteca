@@ -1,20 +1,23 @@
 ﻿using BusinessObjects.Entity;
 using BusinessObjects.Enums;
 using DataAccessLayer.Repository;
+using DataAccessLayer.Contexts;
+using static System.Reflection.Metadata.BlobBuilder;
 
 /// <summary>
 /// Summary description for BookRepository
 /// </summary>
+
 public class BookRepository : IGenericRepository<Book>
 {
-    public IEnumerable<Book> GetAll()
+    private LibraryContext _libraryContext = new LibraryContext();
+    public List<Book> GetAll()
     {
-        IEnumerable<Book> books = [];
-        return books;
+        return _libraryContext._books.ToList();
     }
 
     public Book Get(int id)
     {
-        return new Book(1, "The Lord of the Rings", 1000, BookType.Fantasy, 5, 1);
-    }   
+        return _libraryContext._books.Where(x => x.Id.Equals(id)).FirstOrDefault();
+    }
 }

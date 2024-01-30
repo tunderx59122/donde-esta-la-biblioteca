@@ -1,17 +1,21 @@
 ﻿using BusinessObjects.Entity;
+using DataAccessLayer.Contexts;
+using DataAccessLayer.Repository;
 
 namespace DataAccessLayer.Repository
 {
     public class LibraryRepository : IGenericRepository<Library>
     {
-        public IEnumerable<Library> GetAll()
+        private LibraryContext _libraryContext = new LibraryContext();
+        
+        public List<Library> GetAll()
         {
-            return [];
+            return _libraryContext._libraries.ToList();
         }
 
         public Library Get(int id)
         {
-            return new Library(1, "Pablo", "12, rue");
+            return _libraryContext._libraries.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
     }
 }
