@@ -6,7 +6,11 @@ namespace DataAccessLayer.Repository
 {
     public class LibraryRepository : IGenericRepository<Library>
     {
-        private LibraryContext _libraryContext = new LibraryContext();
+        private LibraryContext _libraryContext;
+        public LibraryRepository(LibraryContext context)
+        {
+            _libraryContext = context;
+        }
         
         public List<Library> GetAll()
         {

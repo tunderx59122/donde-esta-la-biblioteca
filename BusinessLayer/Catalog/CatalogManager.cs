@@ -1,11 +1,17 @@
 ﻿using BusinessObjects.Entity;
 using BusinessObjects.Enums;
+using DataAccessLayer.Repository;
 
 namespace BusinessLayer.Catalog
 {
     public class CatalogManager : ICatalogManager
     {
-        BookRepository _bookRepository = new BookRepository();
+        public IGenericRepository<Book> _bookRepository;
+
+        public CatalogManager(IGenericRepository<Book> bookRepository)
+        {
+            _bookRepository = bookRepository;
+        }
 
         public IEnumerable<Book> DisplayCatalog()
         {

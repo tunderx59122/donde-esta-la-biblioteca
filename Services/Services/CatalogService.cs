@@ -6,7 +6,12 @@ namespace Services.Services
 {
     public class CatalogService : ICatalogService
     {
-        CatalogManager _catalogManager = new CatalogManager();
+        public readonly ICatalogManager _catalogManager;
+        
+        public CatalogService(ICatalogManager catalogManager)
+        {
+            _catalogManager = catalogManager;
+        }
 
         public IEnumerable<Book> ShowCatalog()
         {

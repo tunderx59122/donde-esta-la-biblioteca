@@ -1,8 +1,6 @@
 ﻿using BusinessObjects.Entity;
-using BusinessObjects.Enums;
 using DataAccessLayer.Repository;
 using DataAccessLayer.Contexts;
-using static System.Reflection.Metadata.BlobBuilder;
 
 /// <summary>
 /// Summary description for BookRepository
@@ -10,7 +8,12 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 public class BookRepository : IGenericRepository<Book>
 {
-    private LibraryContext _libraryContext = new LibraryContext();
+    private LibraryContext _libraryContext;
+    public BookRepository(LibraryContext context)
+    {
+        _libraryContext = context;
+    }
+
     public List<Book> GetAll()
     {
         return _libraryContext._books.ToList();

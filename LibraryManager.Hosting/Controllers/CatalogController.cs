@@ -1,7 +1,9 @@
 ﻿using BusinessObjects.Entity;
 using BusinessObjects.Enums;
+using BusinessLayer.Catalog;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services;
+using DataAccessLayer.Contexts;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,7 +13,12 @@ namespace LibraryManager.Hosting.Controllers
     [ApiController]
     public class CatalogController : ControllerBase
     {
-        private CatalogService _catalogService = new CatalogService();
+        private ICatalogService _catalogService;
+
+        public CatalogController(ICatalogService catalogService)
+        {
+            _catalogService = catalogService;
+        }
 
         // GET: api/book
         [HttpGet]

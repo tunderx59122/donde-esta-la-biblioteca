@@ -6,7 +6,12 @@ namespace BusinessLayer.Catalog
 {
     public class AuthorManager : IAuthorManager
     {
-        AuthorRepository _authorRepository = new AuthorRepository();
+        public IGenericRepository<Author> _authorRepository;
+
+        public AuthorManager(IGenericRepository<Author> authorRepository)
+        {
+            _authorRepository = authorRepository;
+        }
 
         public List<Author> DisplayAuthors()
         {

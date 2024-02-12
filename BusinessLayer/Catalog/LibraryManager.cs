@@ -6,7 +6,12 @@ namespace BusinessLayer.Catalog
 {
     public class LibraryManager : ILibraryManager
     {
-        LibraryRepository _libraryRepository = new LibraryRepository();
+        public IGenericRepository<Library> _libraryRepository;
+
+        public LibraryManager(IGenericRepository<Library> libraryRepository)
+        {
+            _libraryRepository = libraryRepository;
+        }
 
         public List<Library> DisplayLibraries()
         {
