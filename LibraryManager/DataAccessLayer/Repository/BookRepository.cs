@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repository
 {
-    public class BookRepository : IRepository<Book>
+    public class BookRepository : IGenericRepository<Book>
     {
         private List<Book> _books = new List<Book>();
 

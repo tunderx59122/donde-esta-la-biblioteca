@@ -10,5 +10,9 @@ namespace DataAccessLayer.Contexts
 {
     public class LibraryContext : DbContext
     {
+        //constructeur par defaut
+
+        // definir des dbset
+        // on définit les relation : asOne etc + def des clés etrangeres
     }
 }

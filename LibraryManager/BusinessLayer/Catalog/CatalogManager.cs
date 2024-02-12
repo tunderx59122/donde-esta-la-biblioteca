@@ -7,9 +7,9 @@ namespace BusinessLayer.Catalog
     public class CatalogManager : ICatalogManager
     {
         //igenericBookRepository
-        private readonly IRepository<Book> _bookRepository;
+        private readonly IGenericRepository<Book> _bookRepository;
 
-        public CatalogManager(IRepository<Book> bookRepository)
+        public CatalogManager(IGenericRepository<Book> bookRepository)
         {
             _bookRepository = bookRepository;
         }

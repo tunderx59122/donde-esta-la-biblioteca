@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Catalog;
-using Microsoft.Extensions.Configuration;
+using DataAccessLayer.Contexts;
+using DataAccessLayer.Repository;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Services.Services;
@@ -18,10 +19,16 @@ public class Program
             {
                 services.AddSingleton<ICatalogService, CatalogService>();
                 services.AddSingleton<ICatalogManager, CatalogManager>();
-                //services.AddDbContext<DataContext>(options =>
-                //{
-                //    options.UseSqlite(connectionString);
-                //});
-            });
+
+                services.AddScoped<IGenericRepository<Book>,BookRepository, BookRepository>();
+                services.AddScoped<IGenericRepository<Book>,BookRepository, BookRepository>();
+                services.AddScoped<IGenericRepository<Book>,BookRepository, BookRepository>();
+
+                services.AddDbContext<LibraryContext>(options =>
+                    options.UseSqlite("Data Source=C:\\Users\\laura\\Documents\\Library.db;"
+
+                ));
+            })
+        .Build();
     }
 }
