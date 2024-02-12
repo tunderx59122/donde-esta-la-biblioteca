@@ -7,9 +7,15 @@ using Moq;
 [TestClass]
 public class CatalogManagerTest
 {
-    private readonly Mock<BookRepository> _mockBookRepository;
-    private readonly CatalogManager _catalogManager;
+    private Mock<IGenericRepository<Book>> _mockBookRepository;
+    private CatalogManager _catalogManager;
 
+    [TestInitialize]
+    public void Initialize()
+    {
+        _mockBookRepository = new Mock<IGenericRepository<Book>>();
+        _catalogManager = new CatalogManager(_mockBookRepository.Object);
+    }
 
     [TestMethod]
     public void TestDisplayCatalog()
@@ -73,8 +79,8 @@ public class CatalogManagerTest
 
         // Assert
         Assert.IsNotNull(result);
-        Assert.Equals(1, result.Count());
-        Assert.Equals("Book 1", result.First().Name);
+        Assert.AreEqual(1, result.Count());
+        Assert.AreEqual("Book 1", result.First().Name);
     }
 
 
@@ -93,7 +99,7 @@ public class CatalogManagerTest
 
         // Assert
         Assert.IsNotNull(result);
-        Assert.Equals("Book 1", result.Name);
-        Assert.Equals(5, result.Rate);
+        Assert.AreEqual("Book 1", result.Name);
+        Assert.AreEqual(5, result.Rate);
     }
 }

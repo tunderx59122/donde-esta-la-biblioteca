@@ -31,11 +31,6 @@ namespace DataAccessLayer.Contexts
                 .WithMany(e => e.Books)
                 .HasForeignKey("id_author");
 
-            modelBuilder.Entity<Book>()
-                .HasOne(e => e.Author)
-                .WithMany(e => e.Books)
-                .HasForeignKey("id_author");
-
             modelBuilder.Entity<Author>()
                 .HasMany(e => e.Books)
                 .WithOne(e => e.Author);

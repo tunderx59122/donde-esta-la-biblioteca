@@ -61,7 +61,7 @@ namespace BusinessLayer.Catalog
             {
                 Console.WriteLine(book.Name);
             }
-            return books;
+            return booksQuery;
         }
 
         public Book GetBookBestRated()
