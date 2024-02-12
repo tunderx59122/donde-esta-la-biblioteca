@@ -27,7 +27,7 @@ namespace BusinessObjects.Entity
 
         public Author Author { get; set; }
 
-        public ICollection<BookLibrary> BookLibraries { get; set; }
+        public ICollection<Library> BookLibraries { get; set; }
     }
 
 }
