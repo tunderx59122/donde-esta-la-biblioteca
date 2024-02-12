@@ -27,14 +27,18 @@ namespace DataAccessLayer.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>()
-                .HasOne<Author>(e => e.Author)
+                .HasOne(e => e.Author)
                 .WithMany(e => e.Books)
-                .HasForeignKey(e => e.Id);
+                .HasForeignKey("id_author");
+
+            modelBuilder.Entity<Book>()
+                .HasOne(e => e.Author)
+                .WithMany(e => e.Books)
+                .HasForeignKey("id_author");
 
             modelBuilder.Entity<Author>()
                 .HasMany(e => e.Books)
-                .WithOne(e => e.Author)
-                .HasForeignKey(e => e.Id);
+                .WithOne(e => e.Author);
 
             modelBuilder.Entity<Library>()
                 .HasMany(e => e.Books);
