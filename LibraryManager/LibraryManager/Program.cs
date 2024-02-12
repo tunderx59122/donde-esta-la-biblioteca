@@ -42,8 +42,8 @@ public class Program
                 services.AddSingleton<ICatalogManager, CatalogManager>();
 
                 services.AddScoped<IGenericRepository<Book>, BookRepository>();
-                services.AddScoped<IGenericRepository<Book>, BookRepository>();
-                services.AddScoped<IGenericRepository<Book>, BookRepository>();
+                services.AddScoped<IGenericRepository<Author>, AuthorRepository>();
+                services.AddScoped<IGenericRepository<Library>, LibraryRepository>();
 
                 services.AddDbContext<LibraryContext>(options =>
                     options.UseSqlite("Data Source=C:\\Users\\laura\\IUT\\R5.___dotnet\\Library.db;")
