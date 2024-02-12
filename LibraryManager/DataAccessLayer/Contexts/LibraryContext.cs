@@ -14,24 +14,27 @@ namespace DataAccessLayer.Contexts
     {
 
         //constructeur par defaut
-        public LibraryContext()
-        { 
-        }
+        public LibraryContext() {}
 
         //définir les DbSet
         public DbSet<Book> Books { get; set; }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Library> Libraries { get; set; }
 
+        public LibraryContext(DbContextOptions<LibraryContext> dbContextOptions) : base(dbContextOptions) {}
 
         // on définit les relations
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>()
-                .HasOne(e => e.Author)
-                .WithMany(e => e.Books)
-                .HasForeignKey(e => e.Author)
-                .HasForeignKey(e => e.Libraries);
+               .HasOne(bl => bl.Book)
+               .WithMany(b => b.Libraries)
+               .HasForeignKey(bl => bl.Id);
+
+            modelBuilder.Entity<Book>()
+                .HasOne(bl => bl.Library)
+                .WithMany(l => l.Libraries)
+                .HasForeignKey(bl => bl.Id);
 
             modelBuilder.Entity<Author>()
                 .HasMany(e => e.Books)

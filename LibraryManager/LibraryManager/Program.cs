@@ -46,7 +46,7 @@ public class Program
                 services.AddScoped<IGenericRepository<Library>, LibraryRepository>();
 
                 services.AddDbContext<LibraryContext>(options =>
-                    options.UseSqlite("Data Source=C:\\Users\\laura\\IUT\\R5.___dotnet\\Library.db;")
+                    options.UseSqlite("Data Source=.\\ressources\\Library.db;")
                 );
             }).Build();
     }
