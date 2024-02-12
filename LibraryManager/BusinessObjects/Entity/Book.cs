@@ -25,7 +25,7 @@ namespace BusinessObjects.Entity
 
         public int Rate { get; set; }
 
-        public int IdAuthor { get; set; }
+        public Author Author { get; set; }
         public ICollection<Library> Libraries { get; set; }
     }
 }

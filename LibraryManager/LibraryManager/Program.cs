@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Catalog;
+using BusinessObjects.Entity;
 using DataAccessLayer.Contexts;
 using DataAccessLayer.Repository;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -11,7 +13,7 @@ public class Program
 {
     private static void Main(string[] args)
     {
-        var configurtion = new ConfigurationBuilder();
+        var configuration = new ConfigurationBuilder();
         var host = CreateHostBuilder();
         var catalogService = host.Services.GetRequiredService<ICatalogService>();
         try
@@ -30,23 +32,22 @@ public class Program
         }
     }
 
-    private static IHostBuilder CreateHostBuilder()
+    private static IHost CreateHostBuilder()
     {
         return Host.CreateDefaultBuilder()
             .ConfigureServices(services =>
             {
+                // Configuration des services
                 services.AddSingleton<ICatalogService, CatalogService>();
                 services.AddSingleton<ICatalogManager, CatalogManager>();
 
-                services.AddScoped<IGenericRepository<Book>,BookRepository, BookRepository>();
-                services.AddScoped<IGenericRepository<Book>,BookRepository, BookRepository>();
-                services.AddScoped<IGenericRepository<Book>,BookRepository, BookRepository>();
+                services.AddScoped<IGenericRepository<Book>, BookRepository>();
+                services.AddScoped<IGenericRepository<Book>, BookRepository>();
+                services.AddScoped<IGenericRepository<Book>, BookRepository>();
 
                 services.AddDbContext<LibraryContext>(options =>
-                    options.UseSqlite("Data Source=C:\\Users\\laura\\Documents\\Library.db;"
-
-                ));
-            })
-        .Build();
+                    options.UseSqlite("Data Source=C:\\Users\\laura\\IUT\\R5.___dotnet\\Library.db;")
+                );
+            }).Build();
     }
 }

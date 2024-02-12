@@ -12,14 +12,14 @@ namespace Services.Services
             _catalogManager = catalogManager;
         }
 
-        public void ShowCatalog()
+        public IEnumerable<Book> ShowCatalog()
         {
-            _catalogManager.DisplayCatalog();
+            return _catalogManager.DisplayCatalog();
         }
 
-        public void ShowCatalog(Type type)
+        public IEnumerable<Book> ShowCatalog(Type type)
         {
-            _catalogManager.DisplayCatalog();
+            return _catalogManager.DisplayCatalog();
         }
 
         public Book FindBook(int id)
