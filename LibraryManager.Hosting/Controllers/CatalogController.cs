@@ -13,7 +13,7 @@ namespace LibraryManager.Hosting.Controllers
     [ApiController]
     public class CatalogController : ControllerBase
     {
-        private ICatalogService _catalogService;
+        public ICatalogService _catalogService;
 
         public CatalogController(ICatalogService catalogService)
         {

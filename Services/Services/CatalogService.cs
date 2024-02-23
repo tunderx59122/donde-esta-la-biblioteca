@@ -6,7 +6,7 @@ namespace Services.Services
 {
     public class CatalogService : ICatalogService
     {
-        public readonly ICatalogManager _catalogManager;
+        private readonly ICatalogManager _catalogManager;
         
         public CatalogService(ICatalogManager catalogManager)
         {
