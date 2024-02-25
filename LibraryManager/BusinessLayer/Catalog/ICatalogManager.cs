@@ -11,10 +11,10 @@ namespace BusinessLayer.Catalog
 {
     public interface ICatalogManager
     {
-        public IEnumerable<Book> DisplayCatalog();
-        public List<Book> DisplayCatalog(BookType type);
-        public List<Book> DisplayFantasy();
-        public Book DisplayBest();
+        public IEnumerable<Book> GetCatalog();
+        public List<Book> GetCatalog(BookType type);
+        public List<Book> GetFANTASY();
+        public Book GetBest();
         public Book FindBook(int id);
     }
 }

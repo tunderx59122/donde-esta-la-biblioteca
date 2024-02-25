@@ -15,12 +15,12 @@ namespace Services.Services
 
         public IEnumerable<Book> ShowCatalog()
         {
-            return _catalogManager.DisplayCatalog();
+            return _catalogManager.GetCatalog();
         }
 
         public IEnumerable<Book> ShowCatalog(BookType type)
         {
-            return _catalogManager.DisplayCatalog(type);
+            return _catalogManager.GetCatalog(type);
         }
 
         public Book FindBook(int id)
@@ -28,14 +28,14 @@ namespace Services.Services
             return _catalogManager.FindBook(id);
         }
 
-        public List<Book> GetFantasy()
+        public List<Book> GetFANTASY()
         {
-            return _catalogManager.DisplayFantasy();
+            return _catalogManager.GetFANTASY();
         }
 
         public Book GetBestBook()
         {
-            return _catalogManager.DisplayBest();
+            return _catalogManager.GetBest();
         }
     }
 }

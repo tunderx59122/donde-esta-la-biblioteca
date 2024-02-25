@@ -34,7 +34,7 @@ namespace LibraryManager.Hosting.Controllers
             return _catalogService.FindBook(id);
         }
 
-        // GET api/book/type/Fantasy
+        // GET api/book/type/FANTASY
         [HttpGet("type/{type}")]
         public IEnumerable<Book> GetType(BookType type)
         {

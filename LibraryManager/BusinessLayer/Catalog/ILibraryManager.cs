@@ -11,7 +11,7 @@ namespace BusinessLayer.Catalog
 {
     public interface ILibraryManager
     {
-        public List<Library> DisplayLibraries();
-        public Library DisplayLibrary(int id);
+        public List<Library> GetLibraries();
+        public Library GetLibrary(int id);
     }
 }

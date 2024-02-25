@@ -4,9 +4,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusinessObjects.Entity
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [Table("book")]
     public class Book : AEntity
     {

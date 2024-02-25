@@ -14,7 +14,7 @@ namespace Services.Services
         public IEnumerable<Book> ShowCatalog();
         public IEnumerable<Book> ShowCatalog(BookType type);
         public Book FindBook(int id);
-        public List<Book> GetFantasy();
+        public List<Book> GetFANTASY();
         public Book GetBestBook();
     }
 }

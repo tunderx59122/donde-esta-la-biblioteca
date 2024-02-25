@@ -13,25 +13,25 @@ namespace BusinessLayer.Catalog
             _bookRepository = bookRepository;
         }
 
-        public IEnumerable<Book> DisplayCatalog()
+        public IEnumerable<Book> GetCatalog()
         {
             return _bookRepository.GetAll();
         }
 
-        public List<Book> DisplayCatalog(BookType type)
+        public List<Book> GetCatalog(BookType type)
         {
-            List<Book> books = this.DisplayCatalog().Where(book => type == book.Type).ToList();
+            List<Book> books = this.GetCatalog().Where(book => type == book.Type).ToList();
             return books;
         }
 
-        public List<Book> DisplayFantasy()
+        public List<Book> GetFANTASY()
         {
-            List<Book> fantasyBooks = this.DisplayCatalog().Where(book => BookType.Fantasy == book.Type).ToList();
-            return fantasyBooks;
+            List<Book> FANTASYBooks = this.GetCatalog().Where(book => BookType.FANTASY == book.Type).ToList();
+            return FANTASYBooks;
         }
-        public Book DisplayBest()
+        public Book GetBest()
         {
-            Book bestBook = this.DisplayCatalog().OrderByDescending(book => book.Rate).FirstOrDefault();
+            Book bestBook = this.GetCatalog().OrderByDescending(book => book.Rate).FirstOrDefault();
             return bestBook;
         }
         public Book FindBook(int id)

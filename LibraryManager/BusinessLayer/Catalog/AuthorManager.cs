@@ -13,7 +13,7 @@ namespace BusinessLayer.Catalog
             _authorRepository = authorRepository;
         }
 
-        public List<Author> DisplayAuthors()
+        public List<Author> GetAuthors()
         {
             return _authorRepository.GetAll();
         }

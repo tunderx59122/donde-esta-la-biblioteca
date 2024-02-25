@@ -3,9 +3,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusinessObjects.Entity
 {
-    /// <summary>
-    /// 
-    /// </summary>
     [Table("author")]
     public class Author : AEntity
     {

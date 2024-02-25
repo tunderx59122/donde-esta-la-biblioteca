@@ -93,17 +93,17 @@ Maintenant passons à l'implémentation de notre architecture.
 
 Pour le type des types de livres, pensez à créer un `enum`. Pas besoin de créer un fichier pour la table de `Stock`.
 
-Dans le cadre d'une relation `OneToMany` (1..\*) ou `ManyToMany` (\*), le **Many** se manifeste sous la forme d'une liste (Ex : `List<ClassA>`) et le **One** sous la forme d'un objet simple (Ex : `ClassA`).
+Dans le cadre d'une relation `OneToMany` (1..\*) ou `ManyToMany` (\*), le **Many** se manifeste sous la forme d'une liste (Ex : `IEnumerable<ClassA>`) et le **One** sous la forme d'un objet simple (Ex : `ClassA`).
 
 2. Dans votre projet `DataAccessLayer`, créez un dossier `Repository`, puis dans ce dossier une classe `BookRepository`
 
-Vous y créerez les méthodes `GetAll()` qui retournera un `List<Book>` et `Get(int id)` qui retounera un `Book`, vous pouvez `return` des objets vides à ce stade.
+Vous y créerez les méthodes `GetAll()` qui retournera un `IEnumerable<Book>` et `Get(int id)` qui retounera un `Book`, vous pouvez `return` des objets vides à ce stade.
 
 PI : Vous aurez besoin d'ajouter des références d'un projet à un autre pour permettre d'utiliser vos entités à l'extérieur de leur projet respectif.
 
 Répétez le même schéma pour chacune de vos entités.
 
-3. Dans votre projet `BusinessLayer`, créez un dossier `Catalog`, puis dans ce dossier une classe `CatalogManager` qui contiendra les méthodes `DisplayCatalog()`, `DisplayCatalog(Type type)` et `FindBook(int id)` qui utiliseront les Repository
+3. Dans votre projet `BusinessLayer`, créez un dossier `Catalog`, puis dans ce dossier une classe `CatalogManager` qui contiendra les méthodes `GetCatalog()`, `GetCatalog(Type type)` et `FindBook(int id)` qui utiliseront les Repository
 
 4. Dans votre projet `Services`, créez un dossier `Services`, puis dans ce dossier une classe `CatalogService` qui contiendra les méthodes `ShowCatalog()`, `ShowCatalog(Type type)` et `FindBook(int id)` qui utiliseront le `CatalogManger`
 
@@ -118,7 +118,7 @@ Il est possible d'utiliser LINQ via le langage correspondant (comme du SQL) ou d
 
 Dans ce contexte, on utilisera le langage LINQ comme dans la documentation Microsoft mais sachez que les deux sont possibles.
 
-1. Dans les `BusinessLayer` et `Services`, ajoutez une méthode pour ne remonter que les livres de type "Fantasy"
+1. Dans les `BusinessLayer` et `Services`, ajoutez une méthode pour ne remonter que les livres de type "FANTASY"
 2. Dans les `BusinessLayer` et `Services`, ajoutez une méthode pour remonter le livre le mieux noté
 
 Pour plus d'informations : [LINQ - Microsoft](https://learn.microsoft.com/fr-fr/dotnet/csharp/linq/)
@@ -316,7 +316,7 @@ namespace API.Controllers
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
-        public List<WeatherForecast> Get()
+        public IEnumerable<WeatherForecast> Get()
         {
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
