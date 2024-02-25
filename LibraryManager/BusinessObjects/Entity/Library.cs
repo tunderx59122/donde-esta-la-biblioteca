@@ -14,5 +14,6 @@ namespace BusinessObjects.Entity
 
 
         public ICollection<Book>? Books { get; set; }
+
     }
 }

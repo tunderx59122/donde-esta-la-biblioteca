@@ -24,6 +24,12 @@ namespace DataAccessLayer.Contexts
         public LibraryContext(DbContextOptions<LibraryContext> dbContextOptions) : base(dbContextOptions) {}
 
         // on définit les relations
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlite("Data Source=../../ressources/library.db");
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>()
