@@ -1,19 +1,21 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BusinessObjects.Entity
 {
+    [Table("library")]
     public class Library : AEntity
     {
-        public string? Name { get; set; }
+        [Key]
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Adress { get; set; }
 
-        public string? Address { get; set; }
-
-
-        public ICollection<Book>? Books { get; set; }
-
+        public Library(int id, string name, string adress)
+        {
+            Id = id;
+            Name = name;
+            Adress = adress;
+        }
     }
 }

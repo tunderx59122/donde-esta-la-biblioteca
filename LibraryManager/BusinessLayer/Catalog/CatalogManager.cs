@@ -1,13 +1,12 @@
 using BusinessObjects.Entity;
+using BusinessObjects.Enums;
 using DataAccessLayer.Repository;
-
 
 namespace BusinessLayer.Catalog
 {
     public class CatalogManager : ICatalogManager
     {
-        //igenericBookRepository
-        private readonly IGenericRepository<Book> _bookRepository;
+        public IGenericRepository<Book> _bookRepository;
 
         public CatalogManager(IGenericRepository<Book> bookRepository)
         {
@@ -16,62 +15,28 @@ namespace BusinessLayer.Catalog
 
         public IEnumerable<Book> DisplayCatalog()
         {
-            var books = _bookRepository.GetAll();
-            Console.WriteLine("La liste des livres :");
-            foreach (Book book in books)
-            {
-                Console.WriteLine(book.Name);
-            }
-            throw new Exception();
+            return _bookRepository.GetAll();
         }
 
-        public IEnumerable<Book> DisplayCatalog(BookTypes type)
+        public List<Book> DisplayCatalog(BookType type)
         {
-            var books = _bookRepository.GetAll();
-            Console.WriteLine($"La liste des livres du type {type} :");
-            foreach (Book book in books)
-            {
-                if (book.Type == type)
-                {
-                    Console.WriteLine(book.Name);
-
-                }
-            }
-            throw new Exception();
+            List<Book> books = this.DisplayCatalog().Where(book => type == book.Type).ToList();
+            return books;
         }
 
+        public List<Book> DisplayFantasy()
+        {
+            List<Book> fantasyBooks = this.DisplayCatalog().Where(book => BookType.Fantasy == book.Type).ToList();
+            return fantasyBooks;
+        }
+        public Book DisplayBest()
+        {
+            Book bestBook = this.DisplayCatalog().OrderByDescending(book => book.Rate).FirstOrDefault();
+            return bestBook;
+        }
         public Book FindBook(int id)
         {
-            Book book = (Book)_bookRepository.Get(id);
-            Console.WriteLine($"Book avec l'ID {book.Id} {book.Name}");
-            return book;
+            return _bookRepository.Get(id);
         }
-
-        public IEnumerable<Book> GetBooksFantasy()
-        {
-            List<Book> books = _bookRepository.GetAll().ToList();
-
-            IEnumerable<Book> booksQuery =
-                from book in books
-                where book.Type == BookTypes.FANTASY
-                select book;
-
-            Console.WriteLine("La liste des livres de type fantasy :");
-            foreach (Book book in booksQuery)
-            {
-                Console.WriteLine(book.Name);
-            }
-            return booksQuery;
-        }
-
-        public Book GetBookBestRated()
-        {
-            List<Book> books = _bookRepository.GetAll().ToList();
-            Book book = books.OrderByDescending(book => book.Rate).First();
-            Console.WriteLine($"Le livre avec le mieux noté est {book.Name} avec {book.Rate}");
-
-            return book;
-        }
-
     }
 }

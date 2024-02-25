@@ -11,6 +11,9 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddDbContext<LibraryContext>(options =>
+            options.UseSqlite(builder.Configuration.GetConnectionString("LibraryDatabase")));
+
         builder.Services.AddScoped<ICatalogService, CatalogService>();
         builder.Services.AddScoped<ICatalogManager, CatalogManager>();
         builder.Services.AddScoped<IGenericRepository<Book>, BookRepository>();

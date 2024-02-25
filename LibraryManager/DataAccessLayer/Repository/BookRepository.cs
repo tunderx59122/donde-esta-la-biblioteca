@@ -1,40 +1,28 @@
-
 using BusinessObjects.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccessLayer.Repository;
+using DataAccessLayer.Contexts;
 
-namespace DataAccessLayer.Repository
+/// <summary>
+/// Summary description for BookRepository
+/// </summary>
+
+public class BookRepository : IGenericRepository<Book>
 {
-    public class BookRepository : IGenericRepository<Book>
+    private LibraryContext _libraryContext;
+    public BookRepository(LibraryContext context)
     {
-        private List<Book> _books = new List<Book>();
+        _libraryContext = context;
+    }
 
-        public BookRepository()
-        {
-            AddBook(new Book {Id = 1, Name = "Le conte de Monte Cristo", Pages = 900, Type = BookTypes.AVENTURE, Rate = 10});
-            AddBook(new Book {Id = 2, Name = "Les trois mousquetaires", Pages = 300, Type = BookTypes.AVENTURE, Rate = 9});
-            AddBook(new Book {Id = 3, Name = "Apprendre le Java mais pas sur l'île de Java", Pages = 900, Type = BookTypes.ENSEIGNEMENT, Rate = 8 });
-            AddBook(new Book {Id = 4, Name = "Le RC Lense, un club pas comme les autres", Pages = 900, Type = BookTypes.HISTOIRE, Rate = 5});
-            AddBook(new Book { Id = 5, Name = "La RGPD, une protection contre l 'injustice", Pages = 900, Type = BookTypes.JURIDIQUE, Rate = 6 });
+    
 
-        }
+    public List<Book> GetAll()
+    {
+        return _libraryContext._books.ToList();
+    }
 
-        public IEnumerable<Book> GetAll()
-        {
-            return _books;
-        }
-
-        public IEnumerable<Book> Get(int id)
-        {
-            return _books.Where(book => book.Id == id);
-        }
-
-        private void AddBook(Book book)
-        {
-            _books.Add(book);
-        }
-
+    public Book Get(int id)
+    {
+        return _libraryContext._books.Where(x => x.Id.Equals(id)).FirstOrDefault();
     }
 }

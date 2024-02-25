@@ -1,37 +1,25 @@
-
 using BusinessObjects.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccessLayer.Contexts;
+using DataAccessLayer.Repository;
 
 namespace DataAccessLayer.Repository
 {
     public class AuthorRepository : IGenericRepository<Author>
     {
-        private List<Author> _authors = new List<Author>();
-
-        public AuthorRepository()
+        private LibraryContext _libraryContext;
+        public AuthorRepository(LibraryContext context)
         {
-            AddAuthor(new Author { Id = 1, FirstName = "Alexandre", LastName = "Dumas" });
-            AddAuthor(new Author { Id = 2, FirstName = "Remi", LastName = "Synave" });
-            AddAuthor(new Author { Id = 3, FirstName = "Dany", LastName = "Capitaine" });
-            AddAuthor(new Author { Id = 4, FirstName = "Severine", LastName = "Letrez" });
-        }
-        public IEnumerable<Author> GetAll()
-        {
-            return _authors;
+            _libraryContext = context;
         }
 
-        public IEnumerable<Author> Get(int id)
+        public List<Author> GetAll()
         {
-            return _authors.Where(author => author.Id == id);
+            return _libraryContext._authors.ToList();
         }
 
-        private void AddAuthor(Author author)
+        public Author Get(int id)
         {
-            _authors.Add(author);
+            return _libraryContext._authors.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
-
     }
 }

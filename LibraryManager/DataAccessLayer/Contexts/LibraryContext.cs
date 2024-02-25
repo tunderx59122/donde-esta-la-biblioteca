@@ -1,48 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
-using BusinessObjects.Entity;
+﻿using BusinessObjects.Entity;
+using BusinessObjects.Enums;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using System.Reflection.Metadata;
 
 namespace DataAccessLayer.Contexts
 {
     public class LibraryContext : DbContext
     {
+        public DbSet<Author> _authors { get; set; }
+        public DbSet<Book> _books { get; set; }
+        public DbSet<Library> _libraries { get; set; }
 
-        //constructeur par defaut
-        public LibraryContext() {}
-
-        //définir les DbSet
-        public DbSet<Book> Books { get; set; }
-        public DbSet<Author> Authors { get; set; }
-        public DbSet<Library> Libraries { get; set; }
-
-        public LibraryContext(DbContextOptions<LibraryContext> dbContextOptions) : base(dbContextOptions) {}
-
-        // on définit les relations
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public LibraryContext(DbContextOptions<LibraryContext> options) : base(options)
         {
-            optionsBuilder.UseSqlite("Data Source=../../ressources/library.db");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>()
-                .HasOne(e => e.Author)
-                .WithMany(e => e.Books)
-                .HasForeignKey("id_author");
-
-            modelBuilder.Entity<Author>()
-                .HasMany(e => e.Books)
-                .WithOne(e => e.Author);
-
-            modelBuilder.Entity<Library>()
-                .HasMany(e => e.Books);
+            modelBuilder
+            .Entity<Book>()
+            .Property(e => e.Type)
+            .HasConversion(
+                v => v.ToString(),
+                v => (BookType)Enum.Parse(typeof(BookType), v));
         }
     }
 }

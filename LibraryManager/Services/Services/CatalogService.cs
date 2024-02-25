@@ -1,12 +1,13 @@
-using BusinessLayer.Catalog;
 using BusinessObjects.Entity;
+using BusinessLayer.Catalog;
+using BusinessObjects.Enums;
 
 namespace Services.Services
 {
     public class CatalogService : ICatalogService
     {
         private readonly ICatalogManager _catalogManager;
-
+        
         public CatalogService(ICatalogManager catalogManager)
         {
             _catalogManager = catalogManager;
@@ -17,9 +18,9 @@ namespace Services.Services
             return _catalogManager.DisplayCatalog();
         }
 
-        public IEnumerable<Book> ShowCatalog(Type type)
+        public IEnumerable<Book> ShowCatalog(BookType type)
         {
-            return _catalogManager.DisplayCatalog();
+            return _catalogManager.DisplayCatalog(type);
         }
 
         public Book FindBook(int id)
@@ -27,14 +28,14 @@ namespace Services.Services
             return _catalogManager.FindBook(id);
         }
 
-        public IEnumerable<Book> GetBooksFantasy()
+        public List<Book> GetFantasy()
         {
-            return _catalogManager.GetBooksFantasy();
+            return _catalogManager.DisplayFantasy();
         }
 
-        public Book GetBookBestRated()
+        public Book GetBestBook()
         {
-            return _catalogManager.GetBookBestRated();
+            return _catalogManager.DisplayBest();
         }
     }
 }

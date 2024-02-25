@@ -13,7 +13,7 @@ namespace BusinessLayer.Catalog
             _libraryRepository = libraryRepository;
         }
 
-        public IEnumerable<Library> DisplayLibraries()
+        public List<Library> DisplayLibraries()
         {
             return _libraryRepository.GetAll();
         }

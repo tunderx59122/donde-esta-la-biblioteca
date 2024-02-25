@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BusinessObjects.Entity
 {
-    public abstract class AEntity
+    public class AEntity
     {
-        public int Id { get; set; }
+        int Id { get; set; }
     }
 }

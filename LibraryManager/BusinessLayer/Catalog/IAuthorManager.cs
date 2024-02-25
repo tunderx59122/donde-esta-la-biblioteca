@@ -11,7 +11,7 @@ namespace BusinessLayer.Catalog
 {
     public interface IAuthorManager
     {
-        public IEnumerable<Author> DisplayAuthors();
+        public List<Author> DisplayAuthors();
         public Author FindAuthor(int id);
     }
 }

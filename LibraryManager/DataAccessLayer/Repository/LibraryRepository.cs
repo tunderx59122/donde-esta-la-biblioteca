@@ -1,35 +1,25 @@
-
 using BusinessObjects.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccessLayer.Contexts;
+using DataAccessLayer.Repository;
 
 namespace DataAccessLayer.Repository
 {
     public class LibraryRepository : IGenericRepository<Library>
     {
-        private List<Library> _libraries = new List<Library>();
-
-        public LibraryRepository()
+        private LibraryContext _libraryContext;
+        public LibraryRepository(LibraryContext context)
         {
-            AddLibrary(new Library { Id = 1, Name = "Bibliothèque Roubaix", Address = "44 Av. Jean Lebas, 59100 Roubaix" });
-            AddLibrary(new Library { Id = 2, Name = "Médiathèque Calais", Address = "16 Rue du Pont Lottin, 62100 Calais" });
+            _libraryContext = context;
         }
-        public IEnumerable<Library> GetAll()
+        
+        public List<Library> GetAll()
         {
-            return _libraries;
-        }
-
-        public IEnumerable<Library> Get(int id)
-        {
-            return _libraries.Where(library => library.Id == id);
+            return _libraryContext._libraries.ToList();
         }
 
-        private void AddLibrary(Library library)
+        public Library Get(int id)
         {
-            _libraries.Add(library);
+            return _libraryContext._libraries.Where(x => x.Id.Equals(id)).FirstOrDefault();
         }
-
     }
 }

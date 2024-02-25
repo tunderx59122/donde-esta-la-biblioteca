@@ -1,105 +1,78 @@
-namespace BusinessLayer.Test;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BusinessLayer.Catalog;
 using BusinessObjects.Entity;
-using DataAccessLayer.Repository;
 using Moq;
+using BusinessObjects.Enums;
+using DataAccessLayer.Repository;
 
-[TestClass]
-public class CatalogManagerTest
+namespace BusinessLayer.Test
 {
-    private Mock<IGenericRepository<Book>> _mockBookRepository;
-    private CatalogManager _catalogManager;
-
-    [TestInitialize]
-    public void Initialize()
+    [TestClass()]   
+    public class CatalogManagerTest
     {
-        _mockBookRepository = new Mock<IGenericRepository<Book>>();
-        _catalogManager = new CatalogManager(_mockBookRepository.Object);
-    }
+        public Mock<IGenericRepository<Book>> _bookRepository;
+        public CatalogManager _catalogManager;
 
-    [TestMethod]
-    public void TestDisplayCatalog()
-    {
+        public CatalogManagerTest()
+        {
+            _bookRepository = new Mock<IGenericRepository<Book>>();
+            _catalogManager = new CatalogManager(_bookRepository.Object);
+        }
 
-        // Arrange
-        _mockBookRepository.Setup(repo => repo.GetAll()).Returns(new List<Book>
-                {
-                    new Book { Id = 1, Name = "Book 1" },
-                    new Book { Id = 2, Name = "Book 2" }
-                });
+        [TestMethod()]
+        public void DisplayCatalogTest()
+        {
+            List<Book> mockBooks = [new Book(667, "Pablo", 12, BookType.Aventure, 2, 1)];
+            _bookRepository.Setup(bkRep => bkRep.GetAll()).Returns(mockBooks);
 
-        // Act & Assert
-        Assert.ThrowsException<Exception>(() => _catalogManager.DisplayCatalog());
-    }
+            IEnumerable<Book> books = _catalogManager.DisplayCatalog();
+            Assert.AreEqual(mockBooks, books);
+        }
 
-    [TestMethod]
-    public void DisplayCatalog(BookTypes type)
-    {
+        [TestMethod()]
+        public void DisplayCatalogTest1()
+        {
+            Book awaitedResult = new Book(667, "Pablo", 12, BookType.Aventure, 2, 1);
+            List<Book> mockBooks = [new Book(14, "Juan", 10, BookType.Fantasy, 3, 1), awaitedResult];
+            _bookRepository.Setup(bkRep => bkRep.GetAll()).Returns(mockBooks);
+            List<Book> books = _catalogManager.DisplayCatalog(BookType.Aventure);
+            Assert.AreEqual(awaitedResult, books[0]);
+            Assert.AreEqual(books.Count, 1);
+        }
 
-        // Arrange
-        _mockBookRepository.Setup(repo => repo.GetAll()).Returns(new List<Book>
-                {
-                    new Book { Id = 1, Name = "Book 1" },
-                    new Book { Id = 2, Name = "Book 2" }
-                });
+        [TestMethod()]
+        public void DisplayFantasyTest()
+        {
+            Book awaitedResult = new Book(14, "Juan", 10, BookType.Fantasy, 3, 1);
+            List<Book> mockBooks = [new Book(667, "Pablo", 12, BookType.Aventure, 2, 1), awaitedResult];
+            _bookRepository.Setup(bkRep => bkRep.GetAll()).Returns(mockBooks);
+            List<Book> books = _catalogManager.DisplayCatalog(BookType.Fantasy);
+            Assert.AreEqual(awaitedResult, books[0]);
+            Assert.AreEqual(books.Count, 1);
+        }
 
-        // Act & Assert
-        Assert.ThrowsException<Exception>(() => _catalogManager.DisplayCatalog());
-    }
+        [TestMethod()]
+        public void DisplayBestTest()
+        {
+            Book awaitedResult = new Book(14, "Juan", 10, BookType.Fantasy, 5, 1);
+            List<Book> mockBooks = [new Book(667, "Pablo", 12, BookType.Aventure, 4, 1), awaitedResult];
 
-    [TestMethod]
-    public void TestFindBook()
-    {
-        // Arrange
-        _mockBookRepository.Setup(repo => repo.GetAll()).Returns(new List<Book>
-            {
-                new Book { Id = 1, Name = "Book 1" },
-                new Book { Id = 2, Name = "Book 2" }
-            });
-        // Act
-        var result = _catalogManager.FindBook(1);
+            _bookRepository.Setup(bkRep => bkRep.GetAll()).Returns(mockBooks);
 
-        // Assert
-        Assert.IsNotNull(result);
-        Assert.Equals("Book 1", result.Name);
-    }
+            Book bestBook = _catalogManager.DisplayBest();
+            Assert.AreEqual(bestBook, awaitedResult);
+        }
 
-    [TestMethod]
-    public void TestGetBooksFantasy()
-    {
-        // Arrange
-        _mockBookRepository.Setup(repo => repo.GetAll()).Returns(new List<Book>
-            {
-                new Book { Id = 1, Name = "Book 1", Type = BookTypes.FANTASY },
-                new Book { Id = 2, Name = "Book 2", Type = BookTypes.AVENTURE }
-            });
+        [TestMethod()]
+        public void FindBookTest()
+        {
+            Book awaitedResult = new Book(14, "Juan", 10, BookType.Fantasy, 3, 1);
+            List<Book> mockBooks = [new Book(667, "Pablo", 12, BookType.Aventure, 2, 1), awaitedResult];
 
-        // Act
-        var result = _catalogManager.GetBooksFantasy();
+            //_bookRepository.Setup(bkRep => bkRep.Get(id)).Returns(mockBooks);
 
-        // Assert
-        Assert.IsNotNull(result);
-        Assert.AreEqual(1, result.Count());
-        Assert.AreEqual("Book 1", result.First().Name);
-    }
-
-
-    [TestMethod]
-    public void TestGetBookBestRated()
-    {
-        // Arrange
-        _mockBookRepository.Setup(repo => repo.GetAll()).Returns(new List<Book>
-            {
-                new Book { Id = 1, Name = "Book 1", Rate = 5 },
-                new Book { Id = 2, Name = "Book 2", Rate = 4 }
-            });
-
-        // Act
-        var result = _catalogManager.GetBookBestRated();
-
-        // Assert
-        Assert.IsNotNull(result);
-        Assert.AreEqual("Book 1", result.Name);
-        Assert.AreEqual(5, result.Rate);
+            Book foundBook = _catalogManager.FindBook(14);
+            Assert.AreEqual(awaitedResult, foundBook);
+        }
     }
 }
